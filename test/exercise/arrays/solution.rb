@@ -5,49 +5,41 @@ module Exercise
         i = 0
         k = 1
         new_array = []
-        max = array[0]
-        while k < array.size 
-          if array[k] > max
-            max = array[k]
-          end
-          k = k + 1  
-        end 
+        max = array.first
+        while k < array.size
+          max = array[k] if array[k] > max
+          k += 1
+        end
         max_in_the_array = max
 
         while i < array.size
-          if array[i] > 0
-            new_array[i] = max_in_the_array
-          else
-            new_array[i] = array[i]
-          end
-            i += 1
+          new_array[i] = if array[i] > 0
+                           max_in_the_array
+                         else
+                           array[i]
+                         end
+          i += 1
         end
         new_array
       end
-    
 
-       def search(_array, _query)
+      def search(array, query)
         low = 0
-        high = _array.length - 1
-        if low > high
-          -1 
-        else
+        high = array.length - 1
+        return -1 if low > high
         while low <= high
           mid = low + (high - low) / 2
-          guess = _array[mid]
-           if (_query < guess)
-             high = mid - 1
-           elsif (_query > guess)
-             low = mid + 1
-           else
-             break mid  
-           end        
-           if low > high
-            break -1    
-           end 
+          guess = array[mid]
+          if query < guess
+            high = mid - 1
+          elsif query > guess
+            low = mid + 1
+          else
+            break mid
+          end
+          break -1 if low > high
          end
-        end
-      end
+     end
     end
   end
 end
