@@ -14,22 +14,11 @@ module Exercise
       end
 
       def chars_count(films, threshold)
-        a = films.select { |film| film['rating_kinopoisk'].to_f >= threshold.to_f}
-        b = a.map {|film| film['name']}
-        d = b.select { |film| film.include? "и" }
-        f = d.map do |film|
-          i = 0 
-          v = film.split(/[^[[:word:]]]+/)
-          puts v
-        while i < v.size
-          k = 0
-          return k += 1 if film[i] == "и"
-          i += 1
-        end
-        k
-        
-        end
-        puts f
+        needed_films = films.select { |film| film['rating_kinopoisk'].to_f >= threshold.to_f }
+        needed_name = needed_films.map { |film| film['name'] }
+        films_with_letter = needed_name.select { |film| film.include? "и" }
+        counting_letters = films_with_letter.map { |film| film.count('и') }
+        result = counting_letters.reduce(0) { |acc, num| acc + num }
       end
     end
   end
