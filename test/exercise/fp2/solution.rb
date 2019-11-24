@@ -10,6 +10,11 @@ module Exercise
 
       # Написать свою функцию my_map
       def my_map
+        results = []
+        each do |item|
+          results << yield(item)
+        end
+        results
       end
 
       # Написать свою функцию my_compact
