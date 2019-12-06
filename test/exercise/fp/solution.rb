@@ -9,7 +9,7 @@ module Exercise
       end
 
       def chars_count(_films, _threshold)
-        0
+        ewer
       end
     end
   end
